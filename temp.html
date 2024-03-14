@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Temperature Converter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-image: url('https://studyfinds.org/wp-content/uploads/2022/02/Heat-thermometer-shows-the-temperature-is-hot-in-the-sky-Summer.jpeg?ver=1705604524'); /* Replace 'background.jpg' with your image path */
+      background-size: cover;
+      background-position: center;
+    }
+    .container {
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.8); /* Adjust the opacity as needed */
+      padding: 20px;
+      border-radius: 10px;
+    }
+    input[type="number"] {
+      width: 100px;
+      padding: 8px;
+      margin-bottom: 10px;
+    }
+    select {
+      padding: 8px;
+      margin-bottom: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    #result {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Temperature Converter</h2>
+    <input type="number" id="temperatureInput" placeholder="Enter temperature">
+    <select id="unitSelect">
+      <option value="celsius">Celsius</option>
+      <option value="fahrenheit">Fahrenheit</option>
+      <option value="kelvin">Kelvin</option>
+    </select>
+    <button onclick="convertTemperature()">Convert</button>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function convertTemperature() {
+      const temperatureInput = parseFloat(document.getElementById('temperatureInput').value);
+      const unitSelect = document.getElementById('unitSelect').value;
+      let result;
+
+      if (isNaN(temperatureInput)) {
+        document.getElementById('result').innerText = "Please enter a valid number.";
+        return;
+      }
+
+      if (unitSelect === 'celsius') {
+        result = (temperatureInput * 9/5) + 32;
+        document.getElementById('result').innerText = `${temperatureInput} Celsius = ${result.toFixed(2)} Fahrenheit`;
+      } else if (unitSelect === 'fahrenheit') {
+        result = (temperatureInput - 32) * 5/9;
+        document.getElementById('result').innerText = `${temperatureInput} Fahrenheit = ${result.toFixed(2)} Celsius`;
+      } else if (unitSelect === 'kelvin') {
+        result = temperatureInput + 273.15;
+        document.getElementById('result').innerText = `${temperatureInput} Kelvin = ${result.toFixed(2)} Celsius`;
+      }
+    }
+  </script>
+</body>
+</html>
